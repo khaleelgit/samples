@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+	<persistence-unit name="perContext-Hibernate" transaction-type="RESOURCE_LOCAL"> 
+
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+		
+		<mapping-file>orm.xml</mapping-file>
+		<class>com.techavalanche.oneToOne.fk.Person</class> 
+		<class>com.techavalanche.oneToOne.fk.Passport</class>
+		
+		<properties>
+            <property name="hibernate.connection.username" value="techavalanche" />
+            <property name="hibernate.connection.password" value="ninad" />
+            <property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+            <property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle9Dialect" />
+            <property name="hibernate.generate_statistics" value="true" />
+
+	        <property name="hibernate.show_sql" value="true" />
+	        
+	        <!--property name="hibernate.hbm2ddl.auto" value="create-drop" /-->
+		</properties>
+	</persistence-unit>	
+
+	<persistence-unit name="perContext-EclipseLink" transaction-type="RESOURCE_LOCAL"> 
+
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
+		<mapping-file>orm.xml</mapping-file>
+		<class>com.techavalanche.oneToOne.fk.Person</class> 
+		<class>com.techavalanche.oneToOne.fk.Passport</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="javax.persistence.jdbc.user" value="techavalanche" />
+			<property name="javax.persistence.jdbc.password" value="ninad" />
+			<property name="eclipselink.logging.level" value="FINEST"/>
+			<property name="eclipselink.orm.throw.exceptions" value="true"/>
+			<!--property name="eclipselink.weaving" value="false"/--> 
+			
+ 			<!-- 
+			<property name="eclipselink.ddl-generation" value="create-tables" />
+			<property name="eclipselink.ddl-generation.output-mode" value="sql-script" />
+			<property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_EclipseLink.sql" />
+			<property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_EclipseLink.sql" />
+ 			-->
+		</properties>
+	</persistence-unit>	
+</persistence>
